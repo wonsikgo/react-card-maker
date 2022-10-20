@@ -1,7 +1,8 @@
 import React from "react";
+import Footer from "../footer/footer";
 import Header from "../header/header";
 
-const Login = () => {
+const Login = ({ authService }) => {
   return (
     <section>
       <Header />
@@ -16,6 +17,7 @@ const Login = () => {
           </li>
         </ul>
       </section>
+      <Footer />
     </section>
   );
 };
