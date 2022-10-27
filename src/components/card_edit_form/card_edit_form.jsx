@@ -3,7 +3,7 @@ import Button from "../button/button";
 import ImageFileInput from "../image_file_input/image_file_input";
 import styles from "./card_edit_form.module.css";
 
-const CardEditForm = ({ card, onDelete }) => {
+const CardEditForm = ({ card, onDelete, onUpdate }) => {
   const { id, name, company, title, email, message, theme, fileName, fileURL } =
     card;
 
@@ -13,21 +13,36 @@ const CardEditForm = ({ card, onDelete }) => {
     onDelete(id);
   };
 
+  const onChange = (event) => {
+    const updateCard = {
+      ...card,
+      [event.currentTarget.name]: event.currentTarget.value,
+    };
+    onUpdate(updateCard);
+  };
+
   return (
     <form className={styles.form}>
       <input
         className={styles.input}
         type="text"
         name="name"
-        defaultValue={name}
+        value={name}
+        onChange={onChange}
       />
       <input
         className={styles.input}
         type="text"
         name="company"
-        defaultValue={company}
+        value={company}
+        onChange={onChange}
       />
-      <select className={styles.select} name="theme" defaultValue={theme}>
+      <select
+        className={styles.select}
+        name="theme"
+        value={theme}
+        onChange={onChange}
+      >
         <option value="light">light</option>
         <option value="dark">dark</option>
         <option value="colorful">colorful</option>
@@ -36,18 +51,21 @@ const CardEditForm = ({ card, onDelete }) => {
         className={styles.input}
         type="text"
         name="title"
-        defaultValue={title}
+        value={title}
+        onChange={onChange}
       />
       <input
         className={styles.input}
         type="text"
         name="email"
-        defaultValue={email}
+        value={email}
+        onChange={onChange}
       />
       <textarea
         className={styles.textarea}
         name="message"
-        defaultValue={message}
+        value={message}
+        onChange={onChange}
       />
       <div className={styles.fileInput}>
         <ImageFileInput />
