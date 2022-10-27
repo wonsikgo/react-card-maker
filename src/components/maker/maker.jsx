@@ -8,8 +8,8 @@ import Preview from "../preview/preview";
 import { useState } from "react";
 
 const Maker = ({ authService }) => {
-  const [cards, setCards] = useState([
-    {
+  const [cards, setCards] = useState({
+    1: {
       id: "1",
       name: "Wonsik",
       company: "Samsung",
@@ -20,7 +20,7 @@ const Maker = ({ authService }) => {
       fileName: "wonsik",
       fileURL: null,
     },
-    {
+    2: {
       id: "2",
       name: "Wonsik2",
       company: "Samsung",
@@ -31,7 +31,7 @@ const Maker = ({ authService }) => {
       fileName: "wonsik",
       fileURL: "ellie.png",
     },
-    {
+    3: {
       id: "3",
       name: "Wonsik3",
       company: "Samsung",
@@ -42,36 +42,42 @@ const Maker = ({ authService }) => {
       fileName: "wonsik",
       fileURL: null,
     },
-  ]);
+  });
   const history = useHistory();
   const onLogout = () => {
     authService.logout();
   };
 
-  const addCard = (card) => {
-    const updated = [...cards, card];
-    setCards(updated);
+  const deleteCard = (card) => {
+    // const index = cards.findIndex((card) => card.id === id);
+    // console.log(`index : ${index}`);
+    // if (index !== -1) {
+    //   const updated = [...cards];
+    //   updated.splice(index, 1);
+    //   setCards(updated);
+    // }
+    setCards((cards) => {
+      const updated = { ...cards };
+      delete updated[card.id];
+      return updated;
+    });
   };
 
-  const deleteCard = (id) => {
-    const index = cards.findIndex((card) => card.id === id);
-    console.log(`index : ${index}`);
-    if (index !== -1) {
-      const updated = [...cards];
-      updated.splice(index, 1);
-      setCards(updated);
-    }
-  };
+  const createOrUpdateCard = (card) => {
+    // console.log(card);
+    // const index = cards.findIndex((item) => item.id === card.id);
+    // console.log(`index : ${index}`);
+    // if (index !== -1) {
+    //   const updated = [...cards];
+    //   updated[index] = card;
+    //   setCards(updated);
+    // }
 
-  const updateCard = (card) => {
-    console.log(card);
-    const index = cards.findIndex((item) => item.id === card.id);
-    console.log(`index : ${index}`);
-    if (index !== -1) {
-      const updated = [...cards];
-      updated[index] = card;
-      setCards(updated);
-    }
+    setCards((cards) => {
+      const updated = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
   };
 
   useEffect(() => {
@@ -87,9 +93,9 @@ const Maker = ({ authService }) => {
       <div className={styles.container}>
         <Editor
           cards={cards}
-          addCard={addCard}
+          addCard={createOrUpdateCard}
+          updateCard={createOrUpdateCard}
           deleteCard={deleteCard}
-          updateCard={updateCard}
         />
         <Preview cards={cards} />
       </div>

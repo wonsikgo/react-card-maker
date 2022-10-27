@@ -4,13 +4,12 @@ import ImageFileInput from "../image_file_input/image_file_input";
 import styles from "./card_edit_form.module.css";
 
 const CardEditForm = ({ card, onDelete, onUpdate }) => {
-  const { id, name, company, title, email, message, theme, fileName, fileURL } =
+  const { name, company, title, email, message, theme, fileName, fileURL } =
     card;
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(`id : ${id}`);
-    onDelete(id);
+    onDelete(card);
   };
 
   const onChange = (event) => {
