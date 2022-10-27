@@ -3,11 +3,15 @@ import Button from "../button/button";
 import ImageFileInput from "../image_file_input/image_file_input";
 import styles from "./card_edit_form.module.css";
 
-const CardEditForm = ({ card }) => {
-  const { name, company, title, email, message, theme, fileName, fileURL } =
+const CardEditForm = ({ card, onDelete }) => {
+  const { id, name, company, title, email, message, theme, fileName, fileURL } =
     card;
 
-  const onSubmit = () => {};
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log(`id : ${id}`);
+    onDelete(id);
+  };
 
   return (
     <form className={styles.form}>

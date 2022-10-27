@@ -53,6 +53,16 @@ const Maker = ({ authService }) => {
     setCards(updated);
   };
 
+  const deleteCard = (id) => {
+    const index = cards.findIndex((card) => card.id === id);
+    console.log(`index : ${index}`);
+    if (index !== -1) {
+      const updated = [...cards];
+      updated.splice(index, 1);
+      setCards(updated);
+    }
+  };
+
   useEffect(() => {
     authService.onAuthChange((user) => {
       if (!user) {
@@ -64,7 +74,7 @@ const Maker = ({ authService }) => {
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <Editor cards={cards} addCard={addCard} />
+        <Editor cards={cards} addCard={addCard} deleteCard={deleteCard} />
         <Preview cards={cards} />
       </div>
       <Footer />
