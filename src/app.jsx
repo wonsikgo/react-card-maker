@@ -4,7 +4,7 @@ import styles from "./app.module.css";
 import Login from "./components/login/login";
 import Maker from "./components/maker/maker";
 
-function App({ authService }) {
+function App({ FileInupt, authService }) {
   const [token, setToken] = useState("");
   return (
     <div className={styles.app}>
@@ -14,7 +14,7 @@ function App({ authService }) {
             <Login authService={authService} />
           </Route>
           <Route path="/maker">
-            <Maker authService={authService} />
+            <Maker FileInupt={FileInupt} authService={authService} />
           </Route>
         </Switch>
       </BrowserRouter>

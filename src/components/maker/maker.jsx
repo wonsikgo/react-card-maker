@@ -7,7 +7,7 @@ import Editor from "../editor/editor";
 import Preview from "../preview/preview";
 import { useState } from "react";
 
-const Maker = ({ authService }) => {
+const Maker = ({ FileInupt, authService }) => {
   const [cards, setCards] = useState({
     1: {
       id: "1",
@@ -92,6 +92,7 @@ const Maker = ({ authService }) => {
       <Header onLogout={onLogout} />
       <div className={styles.container}>
         <Editor
+          FileInupt={FileInupt}
           cards={cards}
           addCard={createOrUpdateCard}
           updateCard={createOrUpdateCard}
