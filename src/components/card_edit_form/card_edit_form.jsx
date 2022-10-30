@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../button/button";
 import styles from "./card_edit_form.module.css";
 
-const CardEditForm = ({ FileInupt, card, onDelete, onUpdate }) => {
+const CardEditForm = ({ FileInput, card, onDelete, onUpdate }) => {
   const { name, company, title, email, message, theme, fileName, fileURL } =
     card;
 
@@ -17,6 +17,14 @@ const CardEditForm = ({ FileInupt, card, onDelete, onUpdate }) => {
       [event.currentTarget.name]: event.currentTarget.value,
     };
     onUpdate(updateCard);
+  };
+
+  const onFileChange = (file) => {
+    onUpdate({
+      ...card,
+      fileName: file.name,
+      fileURL: file.url,
+    });
   };
 
   return (
@@ -66,7 +74,7 @@ const CardEditForm = ({ FileInupt, card, onDelete, onUpdate }) => {
         onChange={onChange}
       />
       <div className={styles.fileInput}>
-        <FileInupt />
+        <FileInput name={fileName} onFileChange={onFileChange} />
       </div>
       <Button name="Delete" onClick={onSubmit} />
     </form>

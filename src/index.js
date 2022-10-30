@@ -8,12 +8,12 @@ import ImageFileInput from "./components/image_file_input/image_file_input";
 
 const authService = new AuthService();
 const imageUploader = new ImageUploader();
-const FileInupt = (props) => (
+const FileInput = (props) => (
   <ImageFileInput {...props} imageUploader={imageUploader} />
 );
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App authService={authService} FileInupt={FileInupt} />
+    <App authService={authService} FileInput={FileInput} />
   </React.StrictMode>
 );
