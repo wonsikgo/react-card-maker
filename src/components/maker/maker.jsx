@@ -49,13 +49,6 @@ const Maker = ({ FileInput, authService }) => {
   };
 
   const deleteCard = (card) => {
-    // const index = cards.findIndex((card) => card.id === id);
-    // console.log(`index : ${index}`);
-    // if (index !== -1) {
-    //   const updated = [...cards];
-    //   updated.splice(index, 1);
-    //   setCards(updated);
-    // }
     setCards((cards) => {
       const updated = { ...cards };
       delete updated[card.id];
@@ -64,15 +57,6 @@ const Maker = ({ FileInput, authService }) => {
   };
 
   const createOrUpdateCard = (card) => {
-    // console.log(card);
-    // const index = cards.findIndex((item) => item.id === card.id);
-    // console.log(`index : ${index}`);
-    // if (index !== -1) {
-    //   const updated = [...cards];
-    //   updated[index] = card;
-    //   setCards(updated);
-    // }
-
     setCards((cards) => {
       const updated = { ...cards };
       updated[card.id] = card;

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styles from "./app.module.css";
 import Login from "./components/login/login";
 import Maker from "./components/maker/maker";
 
 function App({ FileInput, authService }) {
-  const [token, setToken] = useState("");
   return (
     <div className={styles.app}>
       <BrowserRouter>
